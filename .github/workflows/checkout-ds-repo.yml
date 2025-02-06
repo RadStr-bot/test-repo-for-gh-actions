@@ -50,10 +50,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest    
     steps:            
+      # Not enough - we have to install and build explictly here anyways, I don't know what is missing
       - name: Download build repo
         uses: actions/download-artifact@v4
         with:
-          name: build-repo-data
+          name: build-repo-data          
       - name: Install Everything again
         run: npm ci
       - name: Build everything again
@@ -64,9 +65,10 @@ jobs:
       - name: Build conceptual model editor
         working-directory: applications/conceptual-model-editor        
         run: npm run build
-      - name: Run conceptual model editor
-        working-directory: applications/conceptual-model-editor        
-        run: npm run dev
+      # It does run normally ! (but it keeps running of course)  
+      #- name: Run conceptual model editor
+      #  working-directory: applications/conceptual-model-editor        
+      #  run: npm run dev
         
 #  run_DS_backend:
 #    name: Run DS backend
