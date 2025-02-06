@@ -55,7 +55,7 @@ jobs:
         with:
           name: build-repo-data
       - name: Install Everything
-        run: npm run install
+        run: npm install
       - name: CME directory content
         working-directory: applications/conceptual-model-editor        
         run: ls -la 
