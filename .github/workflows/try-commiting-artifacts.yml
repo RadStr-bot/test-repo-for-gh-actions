@@ -58,7 +58,7 @@ jobs:
       - name: Print the final result
         shell: bash
         run: |
-          value=`cat math-homework.txt`
+          value=`cat output/math-homework.txt`
           echo The result is $value
 
 
@@ -82,6 +82,8 @@ jobs:
           # When I want to commit as myself
           # git config --global user.name "RadStr"
           # git config --global user.email ${MY_MAIL}
+      - name: Print result to console
+        run: Successfully set config
           
         
       - name: commit
