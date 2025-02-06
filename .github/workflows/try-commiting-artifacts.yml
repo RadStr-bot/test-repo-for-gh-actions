@@ -83,7 +83,9 @@ jobs:
           # git config --global user.name "RadStr"
           # git config --global user.email ${MY_MAIL}
       - name: Print result to console
-        run: Successfully set config
+        shell: bash
+        run: |
+          echo Successfully set config
           
         
       - name: commit
@@ -97,5 +99,7 @@ jobs:
           git push origin main
           
       - name: Print result to console
-        run: Success!
+        shell: bash
+        run: |
+          echo Successs!
         
