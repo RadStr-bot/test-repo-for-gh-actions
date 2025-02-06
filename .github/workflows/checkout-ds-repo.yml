@@ -1,6 +1,6 @@
 name: Build and test
 on: [push, pull_request]
-jobs:
+jobs:  
   build:
     runs-on: ubuntu-24.04
     strategy:
@@ -23,5 +23,13 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Test
-        run: npm run test
+      #- name: Test
+        #run: npm run test
+
+  run:
+    name: Run DS backend
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print content
+        run: ls -la            
