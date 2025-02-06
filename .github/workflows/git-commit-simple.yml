@@ -26,4 +26,10 @@ jobs:
           # Stage the file, commit and push
           git add time.txt
           git commit -m "New date commit"
-          git push origin main
+#          git push origin main
+# Based on https://sameeradissanayaka.medium.com/how-to-use-github-actions-to-push-code-commit-to-another-branch-af04d8406f08          
+      - name: Push to Repository
+        run: |
+          cd b
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_GITHUB }}@https://github.com/RadStr/test-repo-for-gh-actions.git
+          git push   
