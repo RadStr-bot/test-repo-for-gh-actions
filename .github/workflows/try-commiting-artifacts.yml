@@ -31,7 +31,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: homework_pre
-          path: output/    # We have to specify the directory, if it is not the root one
+          path: output/math-homework.txt    # We have to specify the directory, if it is not the root one
       - shell: bash
         run: |
           value=`cat math-homework.txt`
