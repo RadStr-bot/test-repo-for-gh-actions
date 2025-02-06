@@ -54,8 +54,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-repo-data
-      - name: Update database
-        working-directory: applications/conceptual-model-editor
+      - name: CME directory content
+        working-directory: applications/conceptual-model-editor        
+        run: ls -la 
+      - name: Build conceptual model editor
+        working-directory: applications/conceptual-model-editor        
+        run: npm run build
+      - name: Run conceptual model editor
+        working-directory: applications/conceptual-model-editor        
         run: npm run dev
         
 #  run_DS_backend:
