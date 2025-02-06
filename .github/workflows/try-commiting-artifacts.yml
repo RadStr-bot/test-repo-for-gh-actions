@@ -2,7 +2,10 @@
 
 name: Share data between jobs
 
-on: [push]
+on: 
+  [push]:
+    paths-ignore:
+      - 'dist/**'
 
 jobs:
   job_1:
@@ -16,7 +19,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: homework_pre
-          path: math-homework.txt
+          path: dist/math-homework.txt
 
   job_2:
     name: Multiply by 9
@@ -35,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: homework_final
-          path: math-homework.txt
+          path: dist/math-homework.txt
 
   job_3:
     name: Display results
