@@ -26,4 +26,4 @@ jobs:
           # Stage the file, commit and push
           git add time.txt
           git commit -m "New date commit"
-          git push origin master
+          git push origin main
