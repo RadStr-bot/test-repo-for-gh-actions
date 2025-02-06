@@ -33,8 +33,8 @@ jobs:
       #- name: Test
         #run: npm run test
 
-  run:
-    name: Run DS backend
+  print_build_content:
+    name: Print build content
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -44,3 +44,18 @@ jobs:
           name: build-repo-data
       - name: Print content
         run: ls -la            
+  run_DS_backend:
+    name: Run DS backend
+    needs: build
+    runs-on: ubuntu-latest    
+    steps:      
+      - name: Download build repo
+        uses: actions/download-artifact@v4
+        with:
+          name: build-repo-data
+      - name: Set working directory to backend
+        working-directory: services/backend
+      - name: Update database
+        run: npm run update-database
+      - name: Run the backend
+        run: npm run start
