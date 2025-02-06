@@ -1,7 +1,10 @@
 # https://lannonbr.com/blog/2019-12-09-git-commit-in-actions/
 
 name: Commit date to master
-on: push
+on: 
+  push:
+    paths-ignore:
+      - './time.txt'
 jobs:
   date:
     runs-on: ubuntu-latest
