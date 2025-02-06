@@ -10,11 +10,11 @@ jobs:
     name: Node ${{ matrix.node-version }}
     steps:
       - name: Checkout DS repo
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
         with:
           repository: mff-uk/dataspecer
       - name: Set up node
-      - uses: actions/setup-node@v2
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: Create .env for conceptual-model-editor
