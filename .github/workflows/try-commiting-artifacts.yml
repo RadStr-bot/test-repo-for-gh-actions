@@ -5,7 +5,7 @@ name: Share data between jobs
 on: 
   [push]:
     paths-ignore:
-      - 'dist/**'
+      - 'time.txt'
 
 jobs:
   job_1:
