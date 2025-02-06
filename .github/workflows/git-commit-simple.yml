@@ -4,7 +4,7 @@ name: Commit date to master
 on: 
   push:
     paths-ignore:
-      - './time.txt'
+      - 'time.txt'
 jobs:
   date:
     runs-on: ubuntu-latest
