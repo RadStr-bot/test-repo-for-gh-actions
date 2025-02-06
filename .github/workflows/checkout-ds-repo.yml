@@ -23,6 +23,12 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      
+      - name: Upload all artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-repo-data          
+
       #- name: Test
         #run: npm run test
 
@@ -31,5 +37,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Download build repo
+        uses: actions/download-artifact@v4
+        with:
+          name: build-repo-data
       - name: Print content
         run: ls -la            
