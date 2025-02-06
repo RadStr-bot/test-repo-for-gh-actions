@@ -54,8 +54,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-repo-data
-      - name: Install Everything
-        run: npm install
+      - name: Install Everything again
+        run: npm ci
+      - name: Build everything again
+        run: npm run build
       - name: CME directory content
         working-directory: applications/conceptual-model-editor        
         run: ls -la 
