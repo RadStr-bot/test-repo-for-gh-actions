@@ -54,9 +54,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-repo-data
-      - name: Set working directory to backend
-        working-directory: services/backend
       - name: Update database
+        working-directory: services/backend
         run: npm run update-database
       - name: Run the backend
+        working-directory: services/backend
         run: npm run start
