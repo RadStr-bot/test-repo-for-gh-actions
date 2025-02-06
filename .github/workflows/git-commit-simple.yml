@@ -13,24 +13,4 @@ jobs:
       - name: save current date
         run: |
           # do some operation that changes a file in the git repo
-          date > time.txt
-
-      - name: setup git config
-        env:
-          MY_MAIL: ${{ secrets.MY_MAIL }}
-        run: |
-          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-          git config user.name "RadStr"
-          git config user.email ${MY_MAIL}
-
-      - name: commit
-        env:
-          PAT_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_GITHUB }}
-        run: |
-          # Stage the file, commit and push
-          git add time.txt
-          git commit -m "New date commit"
-          git remote set-url origin https://${PAT_TOKEN}@github.com/RadStr/test-repo-for-gh-actions.git
-          git push origin main
-#          git push            
-# Pushing is based on https://sameeradissanayaka.medium.com/how-to-use-github-actions-to-push-code-commit-to-another-branch-af04d8406f08          
+          date > time.txt        
