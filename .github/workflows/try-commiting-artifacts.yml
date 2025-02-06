@@ -35,7 +35,7 @@ jobs:
           #path: output/    # We have to specify the directory, if it is not the root one
       - shell: bash
         run: |
-          value=`cat math-homework.txt`
+          value=`cat output/math-homework.txt`
           expr $value \* 9 > output/math-homework.txt
       - name: Upload math result for job 2
         uses: actions/upload-artifact@v4
