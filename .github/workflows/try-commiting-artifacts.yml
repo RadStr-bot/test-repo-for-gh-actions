@@ -6,6 +6,7 @@ on:
   push:
     paths-ignore:
       - 'time.txt'
+      - 'output/**'
 
 jobs:
   job_1:
@@ -53,7 +54,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: homework_final
-          #path: output/    # We have to specify the directory, if it is not the root one
+          path: output/    # We have to specify the directory, if it is not the root one
       - name: Print the final result
         shell: bash
         run: |
@@ -69,11 +70,30 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: homework_final    # Using the name defined in GH action, not the path name
-          #path: output/    # We have to specify the directory, if it is not the root one
-      - uses: EndBug/add-and-commit@v9
-        with:
-          default_author: github_actions
-          message: "Trying to commit the result to this repo"
-          add: '["homework_final"]'
+          path: output/    # We have to specify the directory, if it is not the root one
+
+      - name: setup git config
+        env:
+          MY_MAIL: ${{ secrets.MY_MAIL }}
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # When I want to commit as myself
+          # git config --global user.name "RadStr"
+          # git config --global user.email ${MY_MAIL}
+          
+        
+      - name: commit
+        env:
+          PAT_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_GITHUB }}
+        run: |
+          # Stage the file, commit and push
+          git add output/
+          git commit -m "New Homework in output/ dir commit"
+          git remote set-url origin https://${PAT_TOKEN}@github.com/RadStr/test-repo-for-gh-actions.git          
+          git push origin main
+          
       - name: Print result to console
         run: Success!
+        
