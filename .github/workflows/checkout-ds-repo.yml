@@ -49,11 +49,13 @@ jobs:
     name: Run CME
     needs: build
     runs-on: ubuntu-latest    
-    steps:      
+    steps:            
       - name: Download build repo
         uses: actions/download-artifact@v4
         with:
           name: build-repo-data
+      - name: Install Everything
+        run: npm run install
       - name: CME directory content
         working-directory: applications/conceptual-model-editor        
         run: ls -la 
