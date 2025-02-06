@@ -44,17 +44,17 @@ jobs:
           name: build-repo-data
       - name: Print content
         run: ls -la            
-  run_DS_backend:
-    name: Run DS backend
-    needs: build
-    runs-on: ubuntu-latest    
-    steps:      
-      - name: Download build repo
-        uses: actions/download-artifact@v4
-        with:
-          name: build-repo-data
-      - name: Set working directory to backend
-        working-directory: services/backend
+#  run_DS_backend:
+#    name: Run DS backend
+#    needs: build
+#    runs-on: ubuntu-latest    
+#    steps:      
+#      - name: Download build repo
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: build-repo-data
+#      - name: Set working directory to backend
+#        working-directory: services/backend
 #      - name: Update database
 #        run: npm run update-database
 #      - name: Run the backend
