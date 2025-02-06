@@ -14,7 +14,7 @@ jobs:
     steps:
       - shell: bash
         run: |
-          expr 3 + 7 > math-homework.txt
+          expr 3 + 7 > output/math-homework.txt
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v4
         with:
@@ -31,11 +31,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: homework_pre
-          path: output/math-homework.txt    # We have to specify the directory, if it is not the root one
+          #path: output/    # We have to specify the directory, if it is not the root one
       - shell: bash
         run: |
           value=`cat math-homework.txt`
-          expr $value \* 9 > math-homework.txt
+          expr $value \* 9 > output/math-homework.txt
       - name: Upload math result for job 2
         uses: actions/upload-artifact@v4
         with:
@@ -52,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: homework_final
-          path: output/    # We have to specify the directory, if it is not the root one
+          #path: output/    # We have to specify the directory, if it is not the root one
       - name: Print the final result
         shell: bash
         run: |
@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: homework_final    # Using the name defined in GH action, not the path name
-          path: output/    # We have to specify the directory, if it is not the root one
+          #path: output/    # We have to specify the directory, if it is not the root one
       - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
