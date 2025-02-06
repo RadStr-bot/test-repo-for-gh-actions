@@ -17,7 +17,7 @@ jobs:
 
       - name: setup git config
         env:
-          MY_MAIL: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_GITHUB }}
+          MY_MAIL: ${{ secrets.MY_MAIL }}
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
           git config user.name "RadStr"
