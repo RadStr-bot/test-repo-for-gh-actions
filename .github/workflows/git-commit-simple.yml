@@ -16,9 +16,12 @@ jobs:
           date > time.txt
 
       - name: setup git config
+        env:
+          MY_MAIL: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_GITHUB }}
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
           git config user.name "RadStr"
+          git config user.email ${MY_MAIL}
 
       - name: commit
         env:
