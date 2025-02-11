@@ -1,6 +1,6 @@
 name: Build and test
 on: [push, pull_request]
-jobs:  
+jobs:
   build:
     runs-on: ubuntu-24.04
     strategy:
@@ -9,25 +9,33 @@ jobs:
         node-version: [ "22.6" ]
     name: Node ${{ matrix.node-version }}
     steps:
+      - shell: bash
+        run: |
+          mkdir dataspecer-repo
       - name: Checkout DS repo
+        working-directory: dataspecer-repo
         uses: actions/checkout@v4
         with:
           repository: mff-uk/dataspecer
       - name: Set up node
         uses: actions/setup-node@v2
+        working-directory: dataspecer-repo
         with:
           node-version: ${{ matrix.node-version }}
       - name: Create .env for conceptual-model-editor
+        working-directory: dataspecer-repo
         run: cp applications/conceptual-model-editor/.env.example applications/conceptual-model-editor/.env
       - name: Install packages
+        working-directory: dataspecer-repo
         run: npm ci
       - name: Build
+        working-directory: dataspecer-repo
         run: npm run build
-      
       - name: Upload all artifacts
+        working-directory: dataspecer-repo
         uses: actions/upload-artifact@v4
         with:
-          name: build-repo-data     
+          name: build-repo-data
           path: .
 
       #- name: Test
@@ -43,41 +51,49 @@ jobs:
         with:
           name: build-repo-data
       - name: Print content
-        run: ls -la      
+        run: ls -la
 
   run_CME:
     name: Run CME
     needs: build
-    runs-on: ubuntu-latest    
-    steps:            
+    runs-on: ubuntu-latest
+    steps:
       # Not enough - we have to install and build explictly here anyways, I don't know what is missing
       - name: Download build repo
+        working-directory: dataspecer-repo
         uses: actions/download-artifact@v4
         with:
-          name: build-repo-data          
+          name: build-repo-data
       - name: Install Everything again
+        working-directory: dataspecer-repo
         run: npm ci
       - name: Build everything again
+        working-directory: dataspecer-repo
         run: npm run build
       - name: CME directory content
-        working-directory: applications/conceptual-model-editor        
-        run: ls -la 
+        working-directory: dataspecer-repo/applications/conceptual-model-editor
+        run: ls -la
       - name: Build conceptual model editor
-        working-directory: applications/conceptual-model-editor        
-        run: npm run build      
+        working-directory: adataspecer-repo/pplications/conceptual-model-editor
+        run: npm run build
       - name: Run conceptual model editor
-        working-directory: applications/conceptual-model-editor        
+        working-directory: dataspecer-repo/applications/conceptual-model-editor
         run: npm run dev &
-      - run: npm install wait-on@8.0.2  
+      - run: npm install wait-on@8.0.2
       - run: npx wait-on http://localhost:5173/diagram  # Wait until it's up
       - run: curl http://localhost:5173/diagram  # Perform actions (e.g., testing)
-      - run: kill $(jobs -p)
-        
+        uses: actions/checkout@v4
+        run: npm install
+        run: node src/index.js
+      - name: Print content
+        run: ls -la
+        run: kill $(jobs -p)
+
 #  run_DS_backend:
 #    name: Run DS backend
 #    needs: build
-#    runs-on: ubuntu-latest    
-#    steps:      
+#    runs-on: ubuntu-latest
+#    steps:
 #      - name: Download build repo
 #        uses: actions/download-artifact@v4
 #        with:
