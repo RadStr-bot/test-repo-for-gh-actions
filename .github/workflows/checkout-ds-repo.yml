@@ -12,14 +12,13 @@ jobs:
       - shell: bash
         run: |
           mkdir dataspecer-repo
-      - name: Checkout DS repo
-        working-directory: dataspecer-repo
+          cd dataspecer-repo
+      - name: Checkout DS repo        
         uses: actions/checkout@v4
         with:
           repository: mff-uk/dataspecer
       - name: Set up node
-        uses: actions/setup-node@v2
-        working-directory: dataspecer-repo
+        uses: actions/setup-node@v2        
         with:
           node-version: ${{ matrix.node-version }}
       - name: Create .env for conceptual-model-editor
@@ -31,8 +30,7 @@ jobs:
       - name: Build
         working-directory: dataspecer-repo
         run: npm run build
-      - name: Upload all artifacts
-        working-directory: dataspecer-repo
+      - name: Upload all artifacts        
         uses: actions/upload-artifact@v4
         with:
           name: build-repo-data
@@ -82,12 +80,11 @@ jobs:
       - run: npm install wait-on@8.0.2
       - run: npx wait-on http://localhost:5173/diagram  # Wait until it's up
       - run: curl http://localhost:5173/diagram  # Perform actions (e.g., testing)
-        uses: actions/checkout@v4
-        run: npm install
-        run: node src/index.js
-      - name: Print content
-        run: ls -la
-        run: kill $(jobs -p)
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: node src/index.js
+      - run: ls -la
+      - run: kill $(jobs -p)
 
 #  run_DS_backend:
 #    name: Run DS backend
