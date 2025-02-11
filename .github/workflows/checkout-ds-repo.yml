@@ -67,11 +67,7 @@ jobs:
         run: npm run build      
       - name: Run conceptual model editor
         working-directory: applications/conceptual-model-editor        
-        run: npm run dev
-  call_CME:
-    name: Call CME    
-    runs-on: ubuntu-latest 
-    steps:
+        run: npm run dev &
       - run: npx wait-on http://localhost:5173  # Wait until it's up
       - run: curl http://localhost:5173  # Perform actions (e.g., testing)
       - run: kill $(jobs -p)
