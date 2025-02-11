@@ -64,11 +64,13 @@ jobs:
         run: ls -la 
       - name: Build conceptual model editor
         working-directory: applications/conceptual-model-editor        
-        run: npm run build
-      # It does run normally ! (but it keeps running of course)  
-      #- name: Run conceptual model editor
-      #  working-directory: applications/conceptual-model-editor        
-      #  run: npm run dev
+        run: npm run build      
+      - name: Run conceptual model editor
+        working-directory: applications/conceptual-model-editor        
+        run: npm run dev
+      - run: npx wait-on http://localhost:5173  # Wait until it's up
+      - run: curl http://localhost:5173  # Perform actions (e.g., testing)
+      - run: kill $(jobs -p)
         
 #  run_DS_backend:
 #    name: Run DS backend
