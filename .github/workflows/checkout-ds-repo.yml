@@ -68,6 +68,7 @@ jobs:
       - name: Run conceptual model editor
         working-directory: applications/conceptual-model-editor        
         run: npm run dev &
+      - run: npm install wait-on@8.0.2  
       - run: npx wait-on http://localhost:5173  # Wait until it's up
       - run: curl http://localhost:5173  # Perform actions (e.g., testing)
       - run: kill $(jobs -p)
