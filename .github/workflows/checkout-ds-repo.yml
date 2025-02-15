@@ -70,12 +70,11 @@ jobs:
         run: npm run dev &
       - run: npm install wait-on@8.0.2  
       - run: npx wait-on http://localhost:5173/diagram  # Wait until it's up
-      - run: curl http://localhost:5173/diagram  # Perform actions (e.g., testing)      
-      
-      - shell: bash
-        run: |
-          mkdir dataspecer-repo
-          cd dataspecer-repo
+      - run: curl http://localhost:5173/diagram  # Perform actions (e.g., testing)            
+#      - shell: bash
+#        run: |
+#          mkdir dataspecer-repo
+#          cd dataspecer-repo
       - run: ls -la
         working-directory: dataspecer-repo
       - uses: actions/checkout@v4
