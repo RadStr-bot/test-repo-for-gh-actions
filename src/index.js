@@ -20,6 +20,7 @@ try {
     // Define the download path
     const downloadPath = path.resolve("./..", "downloads");
     fs.mkdirSync(downloadPath, { recursive: true });
+    console.info("Download path", downloadPath);
 
     // Set Chromium's download behavior
     await page._client().send('Page.setDownloadBehavior', {
