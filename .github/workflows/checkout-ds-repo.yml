@@ -57,11 +57,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Not enough - we have to install and build explictly here anyways, I don't know what is missing
-      - name: Download build repo
-        working-directory: dataspecer-repo
-        uses: actions/download-artifact@v4
-        with:
-          name: build-repo-data
       - name: Install Everything again
         working-directory: dataspecer-repo
         run: npm ci
