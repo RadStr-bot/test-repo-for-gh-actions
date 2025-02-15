@@ -20,7 +20,7 @@ try {
     await page.goto('http://localhost:5173/diagram')
 
     await page.click('[title="Generate DSV (application profile)"]')
-    
+    console.info("DSV downloaded");
   })()
 } catch (err) {
   console.error(err)
