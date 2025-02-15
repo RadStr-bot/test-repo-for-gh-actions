@@ -19,6 +19,16 @@ try {
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('http://localhost:5173/diagram')
 
+    // Define the download path
+    const downloadPath = path.resolve("./..", "downloads");
+    fs.mkdirSync(downloadPath, { recursive: true });
+
+    // Set Chromium's download behavior
+    await page._client().send('Page.setDownloadBehavior', {
+        behavior: 'allow',
+        downloadPath: downloadPath,
+    });
+
     await page.click('[title="Generate DSV (application profile)"]')
     console.info("DSV downloaded");
     await page.close();
