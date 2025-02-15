@@ -7,7 +7,8 @@ const puppeteer = require('puppeteer')
 try {
   console.info("Starting puppeteer");
   (async () => {
-    const browser = await puppeteer.launch()
+    // https://stackoverflow.com/questions/62228154/puppeteer-fails-to-initiate-in-github-actions
+    const browser = await puppeteer.launch({headless: true})
     const page = await browser.newPage()
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('http://localhost:5173/diagram')
