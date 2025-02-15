@@ -21,7 +21,7 @@ try {
 
     await page.click('[title="Generate DSV (application profile)"]')
     console.info("DSV downloaded");
-    throw new Error("Force exit!");
+    return;
   })()
 } catch (err) {
   console.error(err)
