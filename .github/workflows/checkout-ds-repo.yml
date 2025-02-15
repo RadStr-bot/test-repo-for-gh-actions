@@ -21,9 +21,8 @@ jobs:
         uses: actions/setup-node@v2        
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Create .env for conceptual-model-editor
-        working-directory: dataspecer-repo
-        run: cp applications/conceptual-model-editor/.env.example applications/conceptual-model-editor/.env
+      - name: Create .env for conceptual-model-editor        
+        run: cp dataspecer-repo/applications/conceptual-model-editor/.env.example dataspecer-repo/applications/conceptual-model-editor/.env
       - name: Install packages
         working-directory: dataspecer-repo
         run: npm ci
@@ -67,7 +66,7 @@ jobs:
         working-directory: dataspecer-repo/applications/conceptual-model-editor
         run: ls -la
       - name: Build conceptual model editor
-        working-directory: adataspecer-repo/pplications/conceptual-model-editor
+        working-directory: dataspecer-repo/pplications/conceptual-model-editor
         run: npm run build
       - name: Run conceptual model editor
         working-directory: dataspecer-repo/applications/conceptual-model-editor
