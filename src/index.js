@@ -18,7 +18,7 @@ try {
     await page.goto('http://localhost:5173/diagram')
 
     // Define the download path
-    const downloadPath = path.resolve("./..", "downloads");
+    const downloadPath = path.resolve(__dirname, "downloads");
     fs.mkdirSync(downloadPath, { recursive: true });
     console.info("Download path", downloadPath);
 
