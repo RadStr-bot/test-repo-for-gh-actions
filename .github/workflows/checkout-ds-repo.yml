@@ -76,7 +76,7 @@ jobs:
           mkdir dataspecer-repo
           cd dataspecer-repo
       - run: ls -la
-        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/src/downloads
+        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/
       - uses: actions/checkout@v4
         with:
           path: ./dataspecer-repo
