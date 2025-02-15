@@ -81,20 +81,20 @@ jobs:
         with:
           path: ./dataspecer-repo
       - run: npm install
-        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/src/downloads
+        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/
       - run: node src/index.js
-        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/src/downloads
+        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/
       - name: Upload all artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pop     
-          path: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/src/downloads
+          path: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/downloads
       - name: Download build repo
         uses: actions/download-artifact@v4
         with:
           name: pop          
       - run: ls -la
-        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/src/downloads
+        working-directory: /home/runner/work/test-repo-for-gh-actions/test-repo-for-gh-actions/dataspecer-repo/downloads
       - run: kill $(jobs -p)
         
 #  run_DS_backend:
