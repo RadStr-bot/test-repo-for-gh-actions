@@ -84,6 +84,15 @@ jobs:
         working-directory: dataspecer-repo
       - run: node src/index.js
         working-directory: dataspecer-repo
+      - name: Upload all artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pop     
+          path: ./dataspecer-repo/downloads
+      - name: Download build repo
+        uses: actions/download-artifact@v4
+        with:
+          name: pop          
       - run: ls -la
         working-directory: dataspecer-repo
       - run: kill $(jobs -p)
