@@ -41,6 +41,6 @@ jobs:
           git commit -m "New date commit"
           git remote set-url origin https://${PAT_TOKEN}@github.com/RadStr/test-repo-for-gh-actions.git
           # Comment the push, because it is annoying for the testing
-          # git push origin main
+          #git push origin main
 #          git push            
 # Pushing is based on https://sameeradissanayaka.medium.com/how-to-use-github-actions-to-push-code-commit-to-another-branch-af04d8406f08  
