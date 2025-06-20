@@ -39,7 +39,7 @@ jobs:
           # Stage the file, commit and push
           git add time.txt
           git commit -m "New date commit"
-          git remote set-url origin https://${PAT_TOKEN}@github.com/RadStr/test-repo-for-gh-actions.git
+          git remote set-url origin https://${PAT_TOKEN}@github.com/RadStr-bot/test-repo-for-gh-actions.git
           # Comment the push, because it is annoying for the testing
           git push origin main
 #          git push            
